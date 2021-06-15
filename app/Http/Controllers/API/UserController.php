@@ -94,7 +94,7 @@ class UserController extends Controller
         }
 
         DB::transaction(function () use ($request, $user) {
-            $user = $this->user;
+
             if (!isset($user)) $user = new User;
             $user->name =  $request->user['name'];
             // $user->email = $request->employee['email'] ?: '';
@@ -102,7 +102,7 @@ class UserController extends Controller
                 $user->password = bcrypt($request->user['password']);
             }
             $user->is_admin = $request->user['is_admin'];
-            $user->is_leader = $request->user['is_leader'];
+            // $user->is_leader = $request->user['is_leader'];
             $user->save();
         });
 
@@ -117,16 +117,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $user)
+    public function destroy(User $user)
     {
         DB::transaction(function () use ($user) {
-            $user->delete();
+
 
             $user->delete();
-
-            DB::table('employees')
-                ->where('position', '>', $user->position)
-                ->decrement('position');
         });
 
         return response()->json([

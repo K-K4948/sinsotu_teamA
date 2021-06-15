@@ -16,25 +16,16 @@ class UsersTableSeeder extends Seeder
         $model->name = 'mg-komatsuk';
         $model->password = bcrypt('9705');
         $model->is_admin = true;
-        $model->is_leader = false;
         $model->save();
         $model = new User;
-        $model->name = 'user02';
+        $model->name = 'mg-hisada';
         $model->password = bcrypt('1234');
-        $model->is_admin = false;
-        $model->is_leader = true;
+        $model->is_admin = true;
         $model->save();
         $model = new User;
-        $model->name = 'user03';
+        $model->name = 'mg-motoyama';
         $model->password = bcrypt('1234');
-        $model->is_admin = false;
-        $model->is_leader = false;
-        $model->save();
-        $model = new User;
-        $model->name = 'user04';
-        $model->password = bcrypt('1234');
-        $model->is_admin = false;
-        $model->is_leader = false;
+        $model->is_admin = true;
         $model->save();
     }
 }

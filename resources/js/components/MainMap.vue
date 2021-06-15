@@ -110,7 +110,7 @@ export default {
   data() {
     return {
       reviews: [],
-      myAPI: 'AIzaSyDoT7ZAEG-K-twxebevNoXlOXY6P7v69GA',
+      myAPI: '',
       map: null,
       radius: 0,
       geo: '',
