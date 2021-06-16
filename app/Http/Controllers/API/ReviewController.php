@@ -7,6 +7,7 @@ use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ReviewForList as ReviewForListResource;
@@ -23,9 +24,25 @@ class ReviewController extends Controller
     public function index(Request $request)
     {
         $reviews = Review::all();
-        logger($reviews);
-        $offset = $request->offset;
-        $limit = $request->limit;
+        // $offset = $request->offset;
+        // $limit = $request->limit;
+        // $sort = json_decode($request->sort, true);
+        // $reviews = $this->query->offset($offset)
+        //     ->limit($limit)
+        //     ->get();
+
+        // $count_items = $this->query->count();
+        // logger($count_items);
+        // if ($sort['isAsc']) {
+        //     $reviews = $this->query->orderBy("{$sort['key']}", 'asc')->offset($offset)->limit($limit)->get();
+        // } else {
+        //     $reviews = $this->query->orderBy("{$sort['key']}", 'desc')->offset($offset)->limit($limit)->get();
+        // }
+
+        // return response()->json([
+        //     'total_items' => $count_items,
+        //     'reviews' => ReviewForListResource::collection($reviews),
+        // ]);
 
 
         return ReviewForListResource::collection($reviews);

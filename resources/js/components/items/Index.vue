@@ -56,12 +56,18 @@ export default {
         return {
             items: [],
             isLoading: false,
-
+            //デフォルトのページ
             currentPage: 0,
-            itemsPerPage: 20,
-            maxVisiblePages: 4,
-            totalItems: 0,
+            //1ページごとの件数
+            itemsPerPage: 4,
+            //ページ数の表示デフォルトは2(0,は変わらない)
+            maxVisiblePages: 1,
+            //何件表示するか
+            totalItems: 100,
+            //startする場所
             offset: 0,
+            isLoading: false,
+            fullPage: false,
         }
     },
     mounted () {

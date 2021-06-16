@@ -89,7 +89,7 @@ const router = new VueRouter({
     routes: [
         //　課題
         { name: 'menu', path: '/', component: require('./components/MainMenu.vue').default },
-        { name: 'map', path: '/map', component: require('./components/MainMap.vue').default },
+        { name: 'map', path: '/map', component: require('./components/MainMap copy.vue').default },
         { name: 'create', path: '/create/:restname', component: require('./components/ReviewCreate.vue').default },
         { name: 'create', path: '/create/', component: require('./components/ReviewCreate.vue').default },
         // mock
@@ -171,8 +171,11 @@ const store = new Vuex.Store({
     await store.dispatch('getUser')
     if (store.state.user.is_admin) {
         next()
-    } else if(to.path != '/map') {
-        router.push({ name: 'map' })
+    } 
+    else {
+        if ( to.path == '/') {
+            router.push({ name: 'map' })
+        }
         
     }
     next()
