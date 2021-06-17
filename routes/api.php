@@ -17,6 +17,7 @@ use App\Http\Resources\User as UserResource;
 Route::middleware('auth:api')->get('/user/info', function (Request $request) {
     return new UserResource($request->user());
 });
+
 Route::middleware(['auth:api'])->group(function () {
 
     // レポート

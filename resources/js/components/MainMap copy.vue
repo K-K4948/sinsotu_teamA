@@ -535,7 +535,7 @@ export default {
         async geocoder() {
             //GeocodingAPIから緯度経度取得
             var latlng = await axios.get(
-                `https://maps.googleapis.com/maps/api/geocode/json?address=${this.geo}&key=${this.myAPI}`
+                `https://maps.googleapis.com/maps/api/geocode/json?address=${this.geo}&key=${this.myAPI}`,
             );
             this.lat = latlng.data.results[0].geometry.location.lat;
             this.lng = latlng.data.results[0].geometry.location.lng;
@@ -671,6 +671,7 @@ export default {
     }
 };
 </script>
+
 
 <style lang="scss" scoped>
 // ダサいので円形表示は保留 border-radius: 250px;
