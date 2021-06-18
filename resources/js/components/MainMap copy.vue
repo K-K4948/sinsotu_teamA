@@ -386,7 +386,10 @@ export default {
                         }
                     }
                     // this.dataCount += dataCount;
-                });
+                })
+                .catch(error=> {
+                    console.log(error)
+                })
         },
         async initializeMap() {
             this.mapConfig.center.lat = this.lat;
