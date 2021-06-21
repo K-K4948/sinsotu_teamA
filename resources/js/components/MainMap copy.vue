@@ -184,14 +184,14 @@
                     </tbody>
                     <loading :active.sync="isLoading"></loading>
                 </table>
-                <pagination
+                <!-- <pagination
                     :totalItems="value.total_items"
                     :maxVisiblePages="value.max_visible_pages"
                     :page="value.page"
                     :itemsPerPage="value.items_per_page"
                     :loading="loading"
                     @page-change="pageChange"
-                ></pagination>
+                ></pagination> -->
             </div>
         </div>
     </div>

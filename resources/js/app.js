@@ -193,3 +193,9 @@ const app = new Vue({
     store,
     router,
 });
+
+// var xhr = new XMLHttpRequest();
+// xhr.open('GET', 'https://usefulapis.net/api');
+// xhr.withCredentials = true;
+// xhr.addEventListener('load', onLoadFunc, false);
+// xhr.send(null);
