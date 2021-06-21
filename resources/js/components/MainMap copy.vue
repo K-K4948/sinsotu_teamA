@@ -184,23 +184,24 @@
                     </tbody>
                     <loading :active.sync="isLoading"></loading>
                 </table>
-                <!-- <pagination
-                      :page="currentPage"
-                      :itemsPerPage="itemsPerPage"
-                      :maxVisiblePages="maxVisiblePages"
-                      :totalItems="totalItems"
-                      @pageChange="pageChange"
-                    /> -->
+                <pagination
+                    :totalItems="value.total_items"
+                    :maxVisiblePages="value.max_visible_pages"
+                    :page="value.page"
+                    :itemsPerPage="value.items_per_page"
+                    :loading="loading"
+                    @page-change="pageChange"
+                ></pagination>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import moment from "moment";
 import GoogleMapsApiLoader from "google-maps-api-loader";
+import Pagination from './commons/Pagination.vue';
 export default {
-    // name: 'Map',
+  components: { Pagination },
     data() {
         return {
             reviews: [],
@@ -230,11 +231,6 @@ export default {
             selected: null,
             google: null,
             own_user_name: "",
-            currentPage: 0,
-            itemsPerPage: 5,
-            maxVisiblePages: 3,
-            totalItems: 100,
-            offset: 0,
             isLoading: false,
             fullPage: false,
             sort: {
