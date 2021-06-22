@@ -350,7 +350,9 @@ export default {
                 .get(
                     `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${this.myAPI}&location=${this.lat},${this.lng}&radius=${this.radius}&type=${this.type}&keyword=${this.keyword}&language=ja`, {
                         headers: {
-                            "Access-Control-Allow-Origin:": "*"
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Headers': '*',
+                            'Access-Control-Allow-Credentials': 'true'
                         }
                     }
                 )
