@@ -354,7 +354,8 @@ export default {
                             'Access-Control-Allow-Headers': '*',
                             'Access-Control-Allow-Credentials': 'true',
                             'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
-                        }
+                        },
+                        data:{}
                     }
                 )
                 .then(result => {
@@ -547,7 +548,8 @@ export default {
                             'Access-Control-Allow-Headers': '*',
                             'Access-Control-Allow-Credentials': 'true',
                             'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
-                        }
+                        },
+                data: {}
                 }
             );
             this.lat = latlng.data.results[0].geometry.location.lat;
