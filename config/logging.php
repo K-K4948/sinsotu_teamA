@@ -89,6 +89,12 @@ return [
             'driver' => 'errorlog',
             'level' => 'debug',
         ],
+        'daily' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/laravel.log'),
+            'level' => env('LOG_LEVEL', 'error'),
+            'days' => env('LOG_MAX_DAYS', 7),
+        ],
     ],
 
 ];
