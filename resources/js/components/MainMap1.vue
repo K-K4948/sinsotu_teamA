@@ -109,20 +109,20 @@
                                 <span v-else> OFF</span> -->
                         </div>
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-9">
                                 <span class="span-header">レビュー一覧</span>
                                 <router-link to="/create" class="btn btn-primary" @click="onResume(review)" style="float: right">投稿</router-link>
                                 <table class="table table-sm" key="processes">
                                     <thead>
                                         <tr>
-                                            <th class="text-center bg-primary text-white" style="width: 20%;">投稿者</th>
-                                            <th class="text-center bg-primary text-white" style="width: 20%;">店名</th>
-                                            <th class="text-center bg-primary text-white" style="width: 50%;">コメント</th>
-                                            <th class="text-center bg-primary text-white" style="width: 10%;">削除</th>
+                                            <th class="text-center bg-primary text-white" style="width: 30%;">投稿者</th>
+                                            <th class="text-center bg-primary text-white" style="width: 25%;">店名</th>
+                                            <th class="text-center bg-primary text-white" style="width: 30%;">コメント</th>
+                                            <th class="text-center bg-primary text-white" style="width: 15%;">削除</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(review, index) in reviews" :key="index" class="bg-white" style="font-size: 30%;">
+                                        <tr v-for="(review, index) in reviews" :key="index" class="bg-white" style="font-size: 50%;">
                                             <td class=""> {{ review.user_name }} </td>
                                             <td class="">{{ review.name }}</td>
                                             <td style="white-space: pre;">{{ review.comment }}</td>
