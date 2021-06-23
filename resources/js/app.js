@@ -89,7 +89,7 @@ const router = new VueRouter({
     routes: [
         //　課題
         { name: 'menu', path: '/', component: require('./components/MainMenu.vue').default },
-        { name: 'map', path: '/map', component: require('./components/test.vue').default },
+        { name: 'map', path: '/map', component: require('./components/MainMap1.vue').default },
         { name: 'create', path: '/create/:restname', component: require('./components/ReviewCreate.vue').default },
         { name: 'create', path: '/create/', component: require('./components/ReviewCreate.vue').default },
         // mock

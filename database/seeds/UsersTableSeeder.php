@@ -17,15 +17,15 @@ class UsersTableSeeder extends Seeder
         $model->password = bcrypt('9705');
         $model->is_admin = true;
         $model->save();
-        // $model = new User;
-        // $model->name = 'mg-hisada';
-        // $model->password = bcrypt('1234');
-        // $model->is_admin = true;
-        // $model->save();
-        // $model = new User;
-        // $model->name = 'mg-motoyama';
-        // $model->password = bcrypt('1234');
-        // $model->is_admin = true;
-        // $model->save();
+        $model = new User;
+        $model->name = 'mg-hisada';
+        $model->password = bcrypt('1234');
+        $model->is_admin = true;
+        $model->save();
+        $model = new User;
+        $model->name = 'mg-motoyama';
+        $model->password = bcrypt('1234');
+        $model->is_admin = true;
+        $model->save();
     }
 }

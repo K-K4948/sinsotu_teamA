@@ -1,193 +1,154 @@
 <template>
-    <div class="container-fluid map col-md-12">
-        <div class="row">
-            <div class="map col-md-12" ref="googleMap" style="float: left" />
-        </div>
-        <div class="row">
+    <div class="container-fruid">
+        <div class="overflow-hidden">
             <div>
-                <input
-                    type="radio"
-                    id="one"
-                    value="岡崎橋ビル"
-                    v-model="place"
-                />
-                <label for="one">岡崎橋</label>
-                <input type="radio" id="two" value="本社" v-model="place" />
-                <label for="two">本社</label>
-                <input type="text" v-model="geo" style="width: 120px" placeholder="それ以外はこちら" />
-                <button v-on:click="geocoder">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>            
-                    <!-- <div class="align-self-center">
-                        <button type="button" class="btn btn-dark" @click="onBack">
+                <div class="row">
+                    <div class="map col-md-5" ref="googleMap" style="float: left" />   
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-4">
+                                 <input type="radio" id="one" value="岡崎橋ビル" v-model="place"/>
+                                <label for="one">岡崎橋</label>
+                                <input type="radio" id="two" value="本社" v-model="place" />
+                                <label for="two">本社</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" v-model="geo" style="width: 200px" placeholder="場所検索はこちら" />
+                                <button v-on:click="geocoder">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                       
+                        <!-- <div class="align-self-center"> -->
+                        <!-- <buton type="button" class="btn btn-dark" @click="onBack">
                             戻る
-                        </button>
-                    </div> -->
-        <div class="form">
-            <input
-                type="checkbox"
-                id="checkBox1"
-                value="和食"
-                v-model="genres"
-            />和食        
-            <input
-                type="checkbox"
-                id="checkBox4"
-                value="居酒屋"
-                v-model="genres"
-            />居酒屋
-            <!-- <input
-                type="checkbox"
-                id="checkBox7"
-                value="スーパー"
-                v-model="genres"
-            />スーパー -->
-        </div>
-        <div class="form">
-            <input
-                type="checkbox"
-                id="checkBox3"
-                value="中華"
-                v-model="genres"
-            />中華
-            <input
-                type="checkbox"
-                id="checkBox5"
-                value="ラーメン"
-                v-model="genres"
-            />ラーメン
-        </div>
-        <div class="form">
-            <input
-                type="checkbox"
-                id="checkBox2"
-                value="洋食"
-                v-model="genres"
-            />洋食
-            <input
-                type="checkbox"
-                id="checkBox6"
-                value="弁当"
-                v-model="genres"
-            />弁当
-        </div>
-        <div class="row">
-            <input
-                type="text"
-                v-model="genreText"
-                value=""
-                placeholder="それ以外を検索の方はこちら"
-                style="width: 200px"
-            />
-            <button id="search" v-on:click="search">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-        <div class="row">
-                <select id="log" v-model="genreText" style="width: 200px">
-                </select>
-        </div>
-        <div class="row">
-            <div>
-                <label>検索範囲</label>
-            </div>
-            <div>
-                <input
-                    type="range"
-                    min="1"
-                    max="5"
-                    step="1"
-                    v-model="sliderNum"
-                    style="width: 180px"
-                />
-                    
-            </div>
-        </div>
-        <div class="row">
-            <span v-if="sliderNum==1">半径：200m 徒歩片道：約3分</span>
-            <span v-else-if="sliderNum==2">半径：400m 徒歩片道：約5分</span>
-            <span v-else-if="sliderNum==3">半径：600m 徒歩片道：約8分</span>
-            <span v-else-if="sliderNum==4">半径：800m 徒歩片道：約10分</span>
-            <span v-else-if="sliderNum==5">半径：1km 徒歩片道：約13分</span>
-            <br />
-            <div class="form-check form-switch">
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="flexSwitchCheckDefault"
-                    v-model="circleMode"
-                />
-                <label class="form-check-label" for="flexSwitchCheckDefault"
-                    >往復1時間圏内</label
-                >
-                <!-- <span v-if="circleMode"> ON</span>
-                <span v-else> OFF</span> -->
-            </div>
-        </div>          
-        <!-- <div calss="row">
-            <div class="mr-auto">
-                        <span class="span-header">レビュー一覧</span>
-                    </div>
-                    <router-link
-                        to="/create"
-                        class="btn btn-primary"
-                        @click="onResume(review)"
-                        >投稿</router-link
-                    >
-                    <table class="table table-sm" key="processes">
-                        <thead>
-                            <tr>
-                                <th class="text-center bg-primary text-white">
-                                    投稿者
-                                </th>
-                                <th class="text-center bg-primary text-white">
-                                    店名
-                                </th>
-                                <th class="text-center bg-primary text-white">
-                                    コメント
-                                </th>
-                                <th class="text-center bg-primary text-white">
-                                    削除
-                                </th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr
-                                v-for="(review, index) in reviews"
-                                :key="index"
-                                class="bg-white"
-                            >
-
-                                <td class="text-center align-middle">
-                                    {{ review.user_name }}
-                                </td>
-                                <td class="text-center align-middle">
-                                    {{ review.name }}
-                                </td>
-                                <td
-                                    class="text-center align-middle"
-                                    style="white-space: pre;"
+                        </buton> -->
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="checkBox1"
+                                        value="和食"
+                                        v-model="genres"
+                                    />和食        
+                                    <input
+                                        type="checkbox"
+                                        id="checkBox4"
+                                        value="居酒屋"
+                                        v-model="genres"
+                                    />居酒屋
+                                    <!-- <input
+                                        type="checkbox"
+                                        id="checkBox7"
+                                        value="スーパー"
+                                        v-model="genres"
+                                    />スーパー -->
+                                </div>
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="checkBox3"
+                                        value="中華"
+                                        v-model="genres"
+                                    />中華
+                                    <input
+                                        type="checkbox"
+                                        id="checkBox5"
+                                        value="ラーメン"
+                                        v-model="genres"
+                                    />ラーメン
+                                </div>
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="checkBox2"
+                                        value="洋食"
+                                        v-model="genres"
+                                    />洋食
+                                    <input
+                                        type="checkbox"
+                                        id="checkBox6"
+                                        value="弁当"
+                                        v-model="genres"
+                                    />弁当
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-8" style="float: left;">
+                                <input type="text" v-model="genreText" value="" placeholder="ジャンル検索はこちら" style="width: 200px" />
+                                <button id="search" v-on:click="search">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <div>
+                                    <select id="log" v-model="genreText" style="width: 200px">
+                                    </select>   
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label>検索範囲</label>
+                            <input type="range" min="1" max="5" step="1" v-model="sliderNum" style="width: 200px" /> 
+                        </div>
+                        <div>
+                            <span v-if="sliderNum==1">半径：200m 徒歩片道：約3分</span>
+                            <span v-else-if="sliderNum==2">半径：400m 徒歩片道：約5分</span>
+                            <span v-else-if="sliderNum==3">半径：600m 徒歩片道：約8分</span>
+                            <span v-else-if="sliderNum==4">半径：800m 徒歩片道：約10分</span>
+                            <span v-else-if="sliderNum==5">半径：1km 徒歩片道：約13分</span>
+                                <input
+                                    type="checkbox"
+                                    id="flexSwitchCheckDefault"
+                                    v-model="circleMode"
+                                />
+                                <label for="flexSwitchCheckDefault"
+                                    >往復1時間圏内</label
                                 >
-                                    {{ review.comment }}
-                                </td>
-                                <td>
-                                    <button
-                                        type="button"
-                                        class="btn btn-danger"
-                                        v-show="own.name === review.user_name"
-                                        @click="onDelete(review.id)"
-                                    >
-                                        削除
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <loading :active.sync="isLoading"></loading>
-                    </table>
-                    <pagination
+                                <!-- <span v-if="circleMode"> ON</span>
+                                <span v-else> OFF</span> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <span class="span-header">レビュー一覧</span>
+                                <router-link to="/create" class="btn btn-primary" @click="onResume(review)" style="float: right">投稿</router-link>
+                                <table class="table table-sm" key="processes">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center bg-primary text-white" style="width: 20%;">投稿者</th>
+                                            <th class="text-center bg-primary text-white" style="width: 20%;">店名</th>
+                                            <th class="text-center bg-primary text-white" style="width: 50%;">コメント</th>
+                                            <th class="text-center bg-primary text-white" style="width: 10%;">削除</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(review, index) in reviews" :key="index" class="bg-white" style="font-size: 30%;">
+                                            <td class=""> {{ review.user_name }} </td>
+                                            <td class="">{{ review.name }}</td>
+                                            <td style="white-space: pre;">{{ review.comment }}</td>
+                                            <td>
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-danger"
+                                                    v-show="own.name === review.user_name"
+                                                    @click="onDelete(review.id)"
+                                                    style="font-size: 10%;"
+                                                >
+                                                    削除
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <loading :active.sync="isLoading"></loading>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    
+                    
+                    <!-- <pagination
                         :totalItems="value.total_items"
                         :maxVisiblePages="value.max_visible_pages"
                         :page="value.page"
@@ -195,7 +156,7 @@
                         :loading="loading"
                         @page-change="pageChange"
                     ></pagination> -->
-            
+        </div>     
     </div>         
 </template>
 
@@ -245,6 +206,8 @@ export default {
                 key: "id", // ソートキー
                 isAsc: true // 昇順ならtrue,降順ならfalse
             },
+            //デザイン
+            view: 'col-md-10',
 
             mapConfig: {
                 // 地図の中心地点
@@ -632,26 +595,14 @@ export default {
         },
         onBack: function() {
             this.$router.go(-1);
+        },
+        handleResize: function() {
+            if (window.innnerwidth <= 800) {
+                this.view = true
+            } else {
+                this.view = false
+            }
         }
-        // onCreate: function() {
-        //     let _this = this
-        //         axios.post('/api/review', {
-        //             content: this.content,
-        //         })
-        //         .then(function (resp) {
-        //             if (resp.data.result) {
-        //                 alert('投稿しました。')
-        //                 _this.$router.go(-1)
-        //             } else {
-        //                 _this.errorMessage = resp.data.errorMessage
-        //                 _this.invalid = true
-        //             }
-        //         })
-        //         .catch(function (resp) {
-        //             console.log(resp)
-        //         });
-        //     // this.$router.push({ name: 'review', params: {review_id: review_id} })
-        // },
     },
     watch: {
         place: async function() {
@@ -691,6 +642,13 @@ export default {
         own() {
             return this.$store.state.user;
         }
+    },
+    created() {
+        window.addEventListener('resize', this.handleResize)
+        this.handleResize()
+    },
+    destroyed() {
+        window.removeEventListener('resize', this.handleResize)
     }
 };
 </script>
