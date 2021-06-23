@@ -127,15 +127,14 @@
                                             <td class="">{{ review.name }}</td>
                                             <td style="white-space: pre;">{{ review.comment }}</td>
                                             <td>
-                                                <button
+                                                <!-- <button
                                                     type="button"
                                                     class="btn btn-danger"
                                                     v-show="own.name === review.user_name"
                                                     @click="onDelete(review.id)"
                                                     w-auto
-                                                >
-                                                    削除
-                                                </button>
+                                                > -->
+                                                <i class="fas fa-trash-alt fa-2x red d-flex justify-content-center" v-show="own.name === review.user_name" @click="onDelete(review.id)" style="text-align: center;"></i>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -660,5 +659,8 @@ export default {
     width: 500px;
     height: 500px;
     display: inline-block;
+}
+.red {
+    color:red;
 }
 </style>
