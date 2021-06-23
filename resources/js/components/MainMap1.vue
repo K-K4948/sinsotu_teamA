@@ -132,6 +132,7 @@
                                                     class="btn btn-danger"
                                                     v-show="own.name === review.user_name"
                                                     @click="onDelete(review.id)"
+                                                    w-auto
                                                 >
                                                     削除
                                                 </button>
