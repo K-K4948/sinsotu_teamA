@@ -134,7 +134,7 @@
                                                     @click="onDelete(review.id)"
                                                     w-auto
                                                 > -->
-                                                <i class="fas fa-trash-alt fa-2x red d-flex justify-content-center" v-show="own.name === review.user_name" @click="onDelete(review.id)" style="text-align: center;"></i>
+                                                <i class="fas fa-trash-alt fa-2x red d-flex justify-content-center" v-if="own.name === review.user_name" @click="onDelete(review.id)"></i>
                                             </td>
                                         </tr>
                                     </tbody>
