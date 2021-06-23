@@ -122,7 +122,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(review, index) in reviews" :key="index" class="bg-white" style="font-size: 50%;">
+                                        <tr v-for="(review, index) in reviews" :key="index" class="bg-white" style="font-size: 70%;">
                                             <td class=""> {{ review.user_name }} </td>
                                             <td class="">{{ review.name }}</td>
                                             <td style="white-space: pre;">{{ review.comment }}</td>
@@ -132,7 +132,6 @@
                                                     class="btn btn-danger"
                                                     v-show="own.name === review.user_name"
                                                     @click="onDelete(review.id)"
-                                                    style="font-size: 10%;"
                                                 >
                                                     削除
                                                 </button>
