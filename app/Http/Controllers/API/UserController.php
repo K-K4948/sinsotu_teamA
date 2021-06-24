@@ -151,4 +151,9 @@ class UserController extends Controller
     //     $employees = Employee::all();
     //     return EmployeeForSelectorResource::collection($employees);
     // }
+    public function admin($user)
+    {
+        $user = User::all();
+        return view("layouts.app", compact("user"));
+    }
 }

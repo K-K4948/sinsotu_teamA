@@ -1,16 +1,23 @@
 <template>
     <div class="container-fruid">
         <div class="overflow-hidden">
-            <div>
                 <div class="row">
-                    <div class="map col-md-5" ref="googleMap" style="float: left" />   
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="map col-md-12 relative" ref="googleMap" style="float: left" />
+                            <button v-if="own.is_admin" type="button" class="btn btn-dark absolute" @click="onBack">
+                                戻る
+                            </button>
+                        </div>
+                    </div>
                     <div class="col-md-7">
                         <div class="row">
                             <div class="col-md-4">
-                                 <input type="radio" id="one" value="岡崎橋ビル" v-model="place"/>
+                                <input type="radio" id="one" value="岡崎橋ビル" v-model="place"/>
                                 <label for="one">岡崎橋</label>
                                 <input type="radio" id="two" value="本社" v-model="place" />
                                 <label for="two">本社</label>
+                                
                             </div>
                             <div class="col-md-8">
                                 <input type="text" v-model="geo" style="width: 200px" placeholder="場所検索はこちら" />
@@ -19,11 +26,6 @@
                                 </button>
                             </div>
                         </div>
-                       
-                        <!-- <div class="align-self-center"> -->
-                        <!-- <buton type="button" class="btn btn-dark" @click="onBack">
-                            戻る
-                        </buton> -->
                         <div class="row">
                             <div class="col-md-4">
                                 <div>
@@ -109,7 +111,7 @@
                                 <span v-else> OFF</span> -->
                         </div>
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <span class="span-header">レビュー一覧</span>
                                 <router-link to="/create" class="btn btn-primary" @click="onResume(review)" style="float: right">投稿</router-link>
                                 <table class="table table-sm" key="processes">
@@ -143,10 +145,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-                    
-                    
+                </div>   
                     <!-- <pagination
                         :totalItems="value.total_items"
                         :maxVisiblePages="value.max_visible_pages"
@@ -156,7 +155,7 @@
                         @page-change="pageChange"
                     ></pagination> -->
         </div>     
-    </div>         
+    </div>       
 </template>
 
 <script>
@@ -593,7 +592,8 @@ export default {
             });
         },
         onBack: function() {
-            this.$router.go(-1);
+            // this.$router.go(-1);
+            this.$router.push({name: "menu"});
         },
         handleResize: function() {
             if (window.innnerwidth <= 800) {
@@ -601,7 +601,7 @@ export default {
             } else {
                 this.view = false
             }
-        }
+        },
     },
     watch: {
         place: async function() {
@@ -662,5 +662,12 @@ export default {
 }
 .red {
     color:red;
+}
+.relative {
+    position: relative;
+}
+.absolute {
+    position: absolute;
+    right:0%;
 }
 </style>

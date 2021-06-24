@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\UserToken;
+use App\User;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -35,7 +36,6 @@ class AuthServiceProvider extends ServiceProvider
             } else {
                 return null;
             }
-            
         });
     }
 }
