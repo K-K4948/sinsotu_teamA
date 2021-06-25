@@ -5,7 +5,10 @@
                 <div class="col-md-5">
                     <div class="row">
                         <div class="map col-md-12 relative" ref="googleMap" style="float: left" />
-                        <button v-if="own.is_admin" type="button" class="btn btn-dark absolute" @click="onBack">
+                        <button v-if="own.is_admin && windowWidth > 800" type="button" class="btn btn-dark absolute" @click="onBack">
+                            戻る
+                        </button>
+                        <button v-if="own.is_admin && windowWidth <= 799" type="button" class="btn btn-dark absolute1" @click="onBack">
                             戻る
                         </button>
                     </div>
@@ -84,14 +87,14 @@
                                 <i class="fas fa-search"></i>
                             </button>
                             <div>
-                                <select id="log" v-model="genreText" style="width: 250px">
+                                <select id="log" v-model="genreText" style="width: 250px; margin-bottom: 20px;">
                                 </select>   
                             </div>
                         </div>
                     </div>
                     <div>
-                        <label>検索範囲</label>
-                        <input type="range" min="1" max="5" step="1" v-model="sliderNum" style="width: 200px" /> 
+                        <label for="customRange1" class="form-label">検索範囲</label>
+                        <input type="range" min="1" max="5" step="1" class="form-range" id="customRange1" v-model="sliderNum" style="width: 200px" /> 
                     </div>
                     <div>
                         <span v-if="sliderNum==1">半径：200m 徒歩片道：約3分</span>
@@ -191,6 +194,7 @@ export default {
             offset: 0,
             isLoading: false,
             fullPage: false,
+            windowWidth: 0,
             sort: {
                 key: "id", // ソートキー
                 isAsc: false // 昇順ならtrue,降順ならfalse
@@ -269,17 +273,22 @@ export default {
         };
     },
     async mounted() {
+        this.calculateWindowWidth();
         this.google = await GoogleMapsApiLoader({
             apiKey: this.myAPI
         });
+        window.addEventListener('resize', this.calculateWindowWidth);
         // this.initializeMap();
         this.radius = this.sliderNum * this.searchRange;
 
         document.getElementById("log").disabled = true;
         document.getElementById("search").disabled = true;
-
         this.initializeMap();
         this.getItems();
+        
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize', this.calculateWindowWidth);
     },
     methods: {
         async main() {
@@ -597,6 +606,10 @@ export default {
                 this.view = false
             }
         },
+        calculateWindowWidth() {
+            this.windowWidth = window.innerWidth;
+            console.log(this.windowWidth);
+        },
     },
     watch: {
         place: async function() {
@@ -660,7 +673,11 @@ export default {
 }
 .absolute {
     position: absolute;
-    right:0%;
+    right: 0%;
+}
+.absolute1 {
+    position: absolute;
+    right:5%;
 }
 .sort-clicable {
   cursor: pointer;
