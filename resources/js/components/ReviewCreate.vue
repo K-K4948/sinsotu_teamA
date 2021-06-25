@@ -97,6 +97,11 @@ export default {
                 this.invalid = true
                 return 
             }
+            if (!this.review.comment) {
+                this.errorMessage = 'コメントを入力してください。'
+                this.invalid = true
+                return 
+            }
             axios.post('/api/review', {
                 review: this.review,
             })

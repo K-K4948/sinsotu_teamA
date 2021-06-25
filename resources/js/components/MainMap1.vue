@@ -93,8 +93,8 @@
                         </div>
                     </div>
                     <div>
-                        <label for="customRange1" class="form-label">検索範囲</label>
-                        <input type="range" min="1" max="5" step="1" class="form-range" id="customRange1" v-model="sliderNum" style="width: 200px" /> 
+                        <label>検索範囲</label>
+                        <input type="range" min="1" max="5" step="1" v-model="sliderNum" style="margin-bottom: 30px; margin-left: 10px" /> 
                     </div>
                     <div>
                         <span v-if="sliderNum==1">半径：200m 徒歩片道：約3分</span>
@@ -683,4 +683,40 @@ export default {
   cursor: pointer;
   position: relative;
 }
+
+// body {
+//   font-family: "Dosis", Helvetica, Arial, sans-serif; 
+//   background: #ecf0f1;
+//   color: #34495e;
+//   padding-top: 40px;
+//   text-shadow: white 1px 1px 1px;
+// }
+input[type="range"] {
+  -webkit-appearance: none;
+  background-color: #bdc3c7;
+  width: 200px;
+  height: 5px;
+  border-radius: 5px;
+//   outline: 0;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #007bff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}​
+  input[type="range"]::-webkit-slider-thumb:hover {
+    background-color: white;
+    border: 2px solid #007bff;
+  }
+  input[type="range"]::-webkit-slider-thumb:active {
+    transform: scale(1.0);
+  }
+
+
+
 </style>
